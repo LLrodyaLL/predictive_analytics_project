@@ -37,10 +37,9 @@
 ### Структура проекта:
 ```
 ├── frontend/         # Веб-интерфейс (Vue.js)
-├── history/          # История запросов: сохранённые CSV и JSON
-├── server.py         # Основной сервер FastAPI
-├── parsing.py        # Модуль для сбора данных с API Wildbox
-├── recomendation.py  # Генерация рекомендаций по CSV
+├── API/              # Запросы к wildbox и предобработка данных
+├── backend/          # Бэкенд проекта (FAST_Api)
+├── ml_model          # модуль с ml моделью
 ├── requirements.txt  # Python-зависимости проекта
 └── README.md         # Документация проекта
 ```
