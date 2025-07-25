@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>parsing API documentation</title>
+<meta name="description" content="Этот модуль обрабатывает данные о товарах с API Wildbox и генерирует датасет
+с различными признаками, включая видимость, время доставки и позиции товара.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>parsing</code></h1>
+</header>
+<section id="section-intro">
+<p>Этот модуль обрабатывает данные о товарах с API Wildbox и генерирует датасет
+с различными признаками, включая видимость, время доставки и позиции товара.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="parsing.create_dataset"><code class="name flex">
+<span>def <span class="ident">create_dataset</span></span>(<span>product_ids: List[int], search_queries: List[str], matrix_path: str) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_dataset(
+    product_ids: List[int], search_queries: List[str], matrix_path: str
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Создает датасет из данных о товарах и матрицы логистики.
+
+    Args:
+        product_ids (list): Список идентификаторов товаров.
+        search_queries (list): Список поисковых запросов.
+        matrix_path (str): Путь к файлу с матрицей логистики.
+
+    Returns:
+        pd.DataFrame: Датасет с признаками товаров.
+    &#34;&#34;&#34;
+    if len(product_ids) != len(search_queries):
+        raise ValueError(
+            &#34;Количество product_ids и search_queries должно совпадать&#34;
+        )
+
+    try:
+        df_matrix = pd.read_excel(matrix_path)
+    except (FileNotFoundError, pd.errors.ParserError) as e:
+        logging.error(&#34;❌ Не удалось загрузить матрицу логистики: %s&#34;, e)
+        sys.exit(1)
+
+    dataset = []
+    for pid, query in zip(product_ids, search_queries):
+        logging.info(&#34;▶️ Обработка артикула %s...&#34;, pid)
+        try:
+            row = extract_product_features(pid, query, df_matrix)
+            dataset.append(row)
+        except (ValueError, KeyError, TypeError) as e:
+            logging.error(&#34;[Error] while processing product %s: %s&#34;, pid, e)
+
+    return pd.DataFrame(dataset)</code></pre>
+</details>
+<div class="desc"><p>Создает датасет из данных о товарах и матрицы логистики.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_ids</code></strong> :&ensp;<code>list</code></dt>
+<dd>Список идентификаторов товаров.</dd>
+<dt><strong><code>search_queries</code></strong> :&ensp;<code>list</code></dt>
+<dd>Список поисковых запросов.</dd>
+<dt><strong><code>matrix_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>Путь к файлу с матрицей логистики.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>pd.DataFrame</code></dt>
+<dd>Датасет с признаками товаров.</dd>
+</dl></div>
+</dd>
+<dt id="parsing.extract_position_value"><code class="name flex">
+<span>def <span class="ident">extract_position_value</span></span>(<span>pos: Dict) ‑> float | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract_position_value(pos: Dict) -&gt; Optional[float]:
+    &#34;&#34;&#34;Извлекает валидную позицию из словаря позиции.
+
+    Args:
+        pos (dict): Словарь с данными о позиции.
+
+    Returns:
+        Optional[float]: Числовая позиция или None, если позиция невалидна.
+    &#34;&#34;&#34;
+    keys = [&#39;expected_position&#39;, &#39;position&#39;, &#39;general_position&#39;, &#39;pos&#39;]
+    for key in keys:
+        if pos.get(key) is not None:
+            try:
+                pos_num = float(pos.get(key))
+                if pos_num &gt; 0:
+                    return pos_num
+            except (TypeError, ValueError):
+                continue
+    return None</code></pre>
+</details>
+<div class="desc"><p>Извлекает валидную позицию из словаря позиции.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>pos</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Словарь с данными о позиции.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[float]</code></dt>
+<dd>Числовая позиция или None, если позиция невалидна.</dd>
+</dl></div>
+</dd>
+<dt id="parsing.extract_product_features"><code class="name flex">
+<span>def <span class="ident">extract_product_features</span></span>(<span>product_id: int, search_query: str, df_matrix: pandas.core.frame.DataFrame) ‑> Dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract_product_features(
+    product_id: int, search_query: str, df_matrix: pd.DataFrame
+) -&gt; Dict:
+    &#34;&#34;&#34;Собирает все признаки товара, включая метрики по заказам, выручке,
+    цене, рейтингу, акциям, бренду и логистике.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        search_query (str): Поисковый запрос для складов.
+        df_matrix (pd.DataFrame): Логистическая матрица.
+
+    Returns:
+        dict: Словарь с признаками товара.
+    &#34;&#34;&#34;
+    features = {
+        &#39;product_id&#39;: product_id,
+        &#39;query&#39;: search_query,
+        &#39;orders&#39;: 0,
+        &#39;revenue&#39;: 0,
+        &#39;price&#39;: 0,
+        &#39;discount&#39;: 0,
+        &#39;old_price&#39;: 0,
+        &#39;rating&#39;: 0,
+        &#39;in_stock_percent&#39;: 0,
+        &#39;has_promos&#39;: 0,
+        &#39;brand_rating&#39;: 0,
+        &#39;brand_reviews&#39;: 0,
+        &#39;reviews_last_day&#39;: 0,
+        &#39;promo_days&#39;: 0,
+        &#39;sum_views&#39;: 0,
+        &#39;avg_visibility&#39;: 0,
+        &#39;main_warehouse&#39;: &#39;Не определен&#39;,
+        &#39;avg_position&#39;: None,
+        &#39;expected_position&#39;: None,
+        &#39;positions_count&#39;: 0,
+        &#39;positions_found&#39;: 0,
+        &#39;first_valid_position&#39;: None,
+        &#39;loyalty_level&#39;: &#39;Нет данных&#39;
+    }
+
+    try:
+        product_data = get_product_details(product_id)
+        if product_data:
+            features.update(process_product_data(product_data))
+            features.update(process_promos(product_data.get(&#39;promos&#39;, [])))
+            if &#39;brand&#39; in product_data and isinstance(product_data[&#39;brand&#39;], Dict):
+                brand_data = get_brand_details(product_data[&#39;brand&#39;].get(&#39;id&#39;))
+                if brand_data:
+                    features.update({
+                        &#39;brand_rating&#39;: brand_data.get(&#39;rating&#39;, 0),
+                        &#39;brand_reviews&#39;: brand_data.get(&#39;reviews&#39;, 0),
+                    })
+            dynamic_data = product_data.get(&#39;dynamic&#39;, [])
+            if dynamic_data:
+                features[&#39;sum_views&#39;] = sum(
+                    day.get(&#39;visibility&#39;, 0)
+                    for day in dynamic_data
+                    if isinstance(day, Dict)
+                )
+
+    except (ValueError, KeyError, TypeError) as e:
+        logging.error(&#34;[Error] get_product_details %s: %s&#34;, product_id, e)
+
+    features[&#39;avg_visibility&#39;] = get_average_geo_visibility(product_id)
+    features.update(get_delivery_features(product_id, df_matrix))
+
+    try:
+        warehouses = get_all_warehouses_for_product(product_id)
+        if warehouses:
+            features[&#39;main_warehouse&#39;] = warehouses[0]
+    except (ValueError, KeyError, TypeError) as e:
+        logging.error(&#34;[%s] Ошибка получения складов: %s&#34;, product_id, e)
+
+    features.update(get_position_features(product_id, search_query))
+    return features</code></pre>
+</details>
+<div class="desc"><p>Собирает все признаки товара, включая метрики по заказам, выручке,
+цене, рейтингу, акциям, бренду и логистике.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>search_query</code></strong> :&ensp;<code>str</code></dt>
+<dd>Поисковый запрос для складов.</dd>
+<dt><strong><code>df_matrix</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Логистическая матрица.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Словарь с признаками товара.</dd>
+</dl></div>
+</dd>
+<dt id="parsing.get_average_geo_visibility"><code class="name flex">
+<span>def <span class="ident">get_average_geo_visibility</span></span>(<span>product_id: int) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_average_geo_visibility(product_id: int) -&gt; int:
+    &#34;&#34;&#34;Рассчитывает средний уровень видимости товара (0-2) на основе данных
+    о доступности в регионах.
+
+    Args:
+        product_id (int): Идентификатор товара.
+
+    Returns:
+        int: Средний уровень видимости (0: недоступен, 1: частично доступен,
+             2: доступен во всех регионах).
+    &#34;&#34;&#34;
+    try:
+        raw_data: Optional[Dict] = get_product_geo_visibility(
+            product_id, REGION_LIST
+        )
+        if not raw_data or &#39;results&#39; not in raw_data:
+            return 0
+
+        total_visibility = 0
+        valid_regions = 0
+
+        for entry in raw_data[&#39;results&#39;]:
+            availabilities = entry.get(&#39;availability&#39;, [])
+            total = len(availabilities)
+            if total == 0:
+                continue
+
+            available = sum(
+                1 for a in availabilities if a.get(&#39;is_availability&#39;) is True
+            )
+            total_visibility += 2 if available == total else 1 if available &gt; 0 else 0
+            valid_regions += 1
+
+        if valid_regions == 0:
+            return 0
+
+        avg_vis = round(total_visibility / valid_regions)
+        return min(max(avg_vis, 0), 2)
+
+    except (ValueError, KeyError, TypeError) as e:
+        logging.error(&#34;[%s] Ошибка расчета видимости: %s&#34;, product_id, e)
+        return 0</code></pre>
+</details>
+<div class="desc"><p>Рассчитывает средний уровень видимости товара (0-2) на основе данных
+о доступности в регионах.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Средний уровень видимости (0: недоступен, 1: частично доступен,
+2: доступен во всех регионах).</dd>
+</dl></div>
+</dd>
+<dt id="parsing.get_delivery_features"><code class="name flex">
+<span>def <span class="ident">get_delivery_features</span></span>(<span>product_id: int, df_matrix: pandas.core.frame.DataFrame) ‑> Dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_delivery_features(product_id: int, df_matrix: pd.DataFrame) -&gt; Dict:
+    &#34;&#34;&#34;Возвращает время доставки по каждому федеральному округу (ФО)
+    и среднее время доставки.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        df_matrix (pd.DataFrame): Логистическая матрица с временем доставки.
+
+    Returns:
+        dict: Словарь с временем доставки по ФО и средним временем доставки.
+    &#34;&#34;&#34;
+    features = {f&#39;delivery_{fo}&#39;: 0 for fo in FO_LIST}
+    features[&#39;avg_delivery_time&#39;] = 0
+
+    try:
+        if not isinstance(df_matrix, pd.DataFrame):
+            raise ValueError(&#34;df_matrix должен быть DataFrame&#34;)
+        delivery_times = get_delivery_times(product_id, df_matrix)
+        valid_times = []
+
+        for federal_district in FO_LIST:
+            time = delivery_times.get(federal_district)
+            if pd.notna(time) and time &gt; 0:
+                features[f&#39;delivery_{federal_district}&#39;] = int(time)
+                valid_times.append(time)
+
+        if valid_times:
+            features[&#39;avg_delivery_time&#39;] = int(np.mean(valid_times))
+
+    except (ValueError, KeyError, TypeError) as e:
+        logging.error(&#34;[%s] Ошибка расчета доставки: %s&#34;, product_id, e)
+
+    return features</code></pre>
+</details>
+<div class="desc"><p>Возвращает время доставки по каждому федеральному округу (ФО)
+и среднее время доставки.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>df_matrix</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Логистическая матрица с временем доставки.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Словарь с временем доставки по ФО и средним временем доставки.</dd>
+</dl></div>
+</dd>
+<dt id="parsing.get_position_features"><code class="name flex">
+<span>def <span class="ident">get_position_features</span></span>(<span>product_id: int, search_query: str) ‑> Dict[str, float | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_position_features(
+    product_id: int, search_query: str
+) -&gt; Dict[str, Optional[float]]:
+    &#34;&#34;&#34;Получает данные о позициях товара в поиске.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        search_query (str): Поисковый запрос для складов.
+
+    Returns:
+        dict: Словарь с метриками позиций (средняя, ожидаемая, количество и т.д.).
+    &#34;&#34;&#34;
+    features = {
+        &#39;avg_position&#39;: None,
+        &#39;expected_position&#39;: None,
+        &#39;positions_count&#39;: 0,
+        &#39;positions_found&#39;: 0,
+        &#39;first_valid_position&#39;: None
+    }
+
+    try:
+        if not search_query or not isinstance(search_query, str):
+            raise ValueError(&#34;Поисковый запрос не может быть пустым&#34;)
+        positions = get_warehouse_positions(product_id, search_query)
+        if not positions or not isinstance(positions, list):
+            return features
+
+        features[&#39;positions_found&#39;] = len(positions)
+        valid_positions = []
+
+        for pos in positions:
+            if not isinstance(pos, Dict):
+                continue
+            pos_num = extract_position_value(pos)
+            if pos_num is not None:
+                valid_positions.append(pos_num)
+                if features[&#39;first_valid_position&#39;] is None:
+                    features[&#39;first_valid_position&#39;] = pos_num
+                if &#39;expected_position&#39; in pos and pos[&#39;expected_position&#39;] is not None:
+                    features[&#39;expected_position&#39;] = pos_num
+
+        features[&#39;positions_count&#39;] = len(valid_positions)
+        if valid_positions:
+            features[&#39;avg_position&#39;] = round(np.mean(valid_positions), 1)
+            if features[&#39;expected_position&#39;] is None:
+                features[&#39;expected_position&#39;] = features[&#39;avg_position&#39;]
+
+    except (ValueError, KeyError, TypeError) as e:
+        logging.error(&#34;[%s] Ошибка получения позиций: %s&#34;, product_id, e)
+
+    return features</code></pre>
+</details>
+<div class="desc"><p>Получает данные о позициях товара в поиске.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>search_query</code></strong> :&ensp;<code>str</code></dt>
+<dd>Поисковый запрос для складов.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Словарь с метриками позиций (средняя, ожидаемая, количество и т.д.).</dd>
+</dl></div>
+</dd>
+<dt id="parsing.process_product_data"><code class="name flex">
+<span>def <span class="ident">process_product_data</span></span>(<span>product_data: Dict) ‑> Dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_product_data(product_data: Dict) -&gt; Dict:
+    &#34;&#34;&#34;Обрабатывает данные о товаре и возвращает соответствующие признаки.
+
+    Args:
+        product_data (dict): Данные о товаре из API.
+
+    Returns:
+        dict: Словарь с признаками товара.
+    &#34;&#34;&#34;
+    revenue = product_data.get(&#39;proceeds&#39;, 0)
+    features = {
+        &#39;orders&#39;: product_data.get(&#39;orders&#39;, 0),
+        &#39;revenue&#39;: revenue,
+        &#39;price&#39;: product_data.get(&#39;price&#39;, 0),
+        &#39;discount&#39;: product_data.get(&#39;discount&#39;, 0),
+        &#39;old_price&#39;: product_data.get(&#39;old_price&#39;, 0),
+        &#39;rating&#39;: product_data.get(&#39;rating&#39;, 0),
+        &#39;in_stock_percent&#39;: product_data.get(&#39;in_stock_percent&#39;, 0),
+        &#39;reviews_last_day&#39;: product_data.get(
+            &#39;reviews&#39;, product_data.get(&#39;feedbacks&#39;, 0)
+        ),
+        &#39;loyalty_level&#39;: &#39;Нет данных&#39;
+    }
+
+    for level, threshold in REVENUE_THRESHOLDS.items():
+        if revenue &gt;= threshold:
+            features[&#39;loyalty_level&#39;] = level
+            break
+
+    return features</code></pre>
+</details>
+<div class="desc"><p>Обрабатывает данные о товаре и возвращает соответствующие признаки.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_data</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Данные о товаре из API.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Словарь с признаками товара.</dd>
+</dl></div>
+</dd>
+<dt id="parsing.process_promos"><code class="name flex">
+<span>def <span class="ident">process_promos</span></span>(<span>promos: List[Dict]) ‑> Dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_promos(promos: List[Dict]) -&gt; Dict:
+    &#34;&#34;&#34;Обрабатывает данные об акциях и возвращает связанные признаки.
+
+    Args:
+        promos (list): Список акций.
+
+    Returns:
+        dict: Словарь с признаками акций.
+    &#34;&#34;&#34;
+    features = {&#39;has_promos&#39;: int(bool(promos)), &#39;promo_days&#39;: 0}
+    promo_dates = set()
+
+    for promo in promos:
+        try:
+            start = datetime.fromisoformat(promo[&#39;start_date&#39;])
+            end = datetime.fromisoformat(promo[&#39;end_date&#39;])
+            current = start
+            while current &lt;= end:
+                promo_dates.add(current.date())
+                current += timedelta(days=1)
+        except (ValueError, KeyError):
+            continue
+
+    features[&#39;promo_days&#39;] = len(promo_dates)
+    return features</code></pre>
+</details>
+<div class="desc"><p>Обрабатывает данные об акциях и возвращает связанные признаки.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>promos</code></strong> :&ensp;<code>list</code></dt>
+<dd>Список акций.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Словарь с признаками акций.</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="parsing.create_dataset" href="#parsing.create_dataset">create_dataset</a></code></li>
+<li><code><a title="parsing.extract_position_value" href="#parsing.extract_position_value">extract_position_value</a></code></li>
+<li><code><a title="parsing.extract_product_features" href="#parsing.extract_product_features">extract_product_features</a></code></li>
+<li><code><a title="parsing.get_average_geo_visibility" href="#parsing.get_average_geo_visibility">get_average_geo_visibility</a></code></li>
+<li><code><a title="parsing.get_delivery_features" href="#parsing.get_delivery_features">get_delivery_features</a></code></li>
+<li><code><a title="parsing.get_position_features" href="#parsing.get_position_features">get_position_features</a></code></li>
+<li><code><a title="parsing.process_product_data" href="#parsing.process_product_data">process_product_data</a></code></li>
+<li><code><a title="parsing.process_promos" href="#parsing.process_promos">process_promos</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

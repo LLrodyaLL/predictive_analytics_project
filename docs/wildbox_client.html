@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>wildbox_client API documentation</title>
+<meta name="description" content="Модуль для взаимодействия с API Wildbox, включая получение данных о товарах, брендах, складах и позиции товара по регионам.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>wildbox_client</code></h1>
+</header>
+<section id="section-intro">
+<p>Модуль для взаимодействия с API Wildbox, включая получение данных о товарах, брендах, складах и позиции товара по регионам.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="wildbox_client.get_all_warehouses_for_product"><code class="name flex">
+<span>def <span class="ident">get_all_warehouses_for_product</span></span>(<span>product_id: int) ‑> list</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_warehouses_for_product(product_id: int) -&gt; list:
+    &#34;&#34;&#34;
+    Получает все склады для товара.
+
+    Args:
+        product_id (int): Идентификатор товара.
+
+    Returns:
+        list: Список складов.
+    &#34;&#34;&#34;
+    url = &#34;https://wildbox.ru/api/wb_dynamic/warehouses/&#34;
+    params = {
+        &#39;product_ids&#39;: product_id,
+        &#39;date_from&#39;: DATE_FROM,
+        &#39;date_to&#39;: DATE_TO,
+        &#39;extra_fields&#39;: &#39;name,quantity&#39;,
+        &#39;limit&#39;: 1000
+    }
+    try:
+        r = requests.get(url, headers=HEADERS, cookies=COOKIES, params=params, timeout=30)
+        r.raise_for_status()
+        return list({w.get(&#34;name&#34;) for w in r.json() if w.get(&#34;name&#34;)})
+    except requests.exceptions.RequestException as e:
+        print(f&#34;[{product_id}] Ошибка складов:&#34;, e)
+        return []</code></pre>
+</details>
+<div class="desc"><p>Получает все склады для товара.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>Список складов.</dd>
+</dl></div>
+</dd>
+<dt id="wildbox_client.get_brand_details"><code class="name flex">
+<span>def <span class="ident">get_brand_details</span></span>(<span>brand_id: int) ‑> dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_brand_details(brand_id: int) -&gt; dict:
+    &#34;&#34;&#34;
+    Получает информацию по бренду.
+
+    Args:
+        brand_id (int): Идентификатор бренда.
+
+    Returns:
+        dict: Информация о бренде.
+    &#34;&#34;&#34;
+    url = &#34;https://wildbox.ru/api/wb_dynamic/brands/&#34;
+    params = {
+        &#39;brand_ids&#39;: brand_id,
+        &#39;date_from&#39;: DATE_FROM,
+        &#39;date_to&#39;: DATE_TO,
+        &#39;extra_fields&#39;: &#39;rating,reviews,seller_rating,proceeds&#39;
+    }
+    try:
+        response = requests.get(url, headers=HEADERS, cookies=COOKIES, params=params, timeout=30)
+        response.raise_for_status()
+        results = response.json().get(&#39;results&#39;, [])
+        return results[0] if results else {}
+    except requests.exceptions.RequestException as e:
+        print(f&#34;Ошибка при получении данных бренда {brand_id}: {e}&#34;)
+        return {}</code></pre>
+</details>
+<div class="desc"><p>Получает информацию по бренду.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>brand_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор бренда.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Информация о бренде.</dd>
+</dl></div>
+</dd>
+<dt id="wildbox_client.get_delivery_times"><code class="name flex">
+<span>def <span class="ident">get_delivery_times</span></span>(<span>product_id: int, df_matrix: pandas.core.frame.DataFrame) ‑> dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_delivery_times(product_id: int, df_matrix: pd.DataFrame) -&gt; dict:
+    &#34;&#34;&#34;
+    Получает время доставки для товара.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        df_matrix (pd.DataFrame): Данные о складах и времени доставки.
+
+    Returns:
+        dict: Время доставки.
+    &#34;&#34;&#34;
+    warehouses = get_all_warehouses_for_product(product_id)
+    filtered = df_matrix[df_matrix[&#39;Склад&#39;].isin(warehouses)]
+    if filtered.empty:
+        filtered = df_matrix[df_matrix[&#39;Склад&#39;].isin(FALLBACK_WAREHOUSES)]
+    cleaned = filtered.drop(columns=[&#39;Федеральный округ&#39;])
+    numeric = cleaned.drop(columns=[&#39;Склад&#39;]).map(lambda x: x if x &gt; 1 else None)
+    return numeric.min().to_dict()</code></pre>
+</details>
+<div class="desc"><p>Получает время доставки для товара.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>df_matrix</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Данные о складах и времени доставки.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Время доставки.</dd>
+</dl></div>
+</dd>
+<dt id="wildbox_client.get_product_details"><code class="name flex">
+<span>def <span class="ident">get_product_details</span></span>(<span>product_id: int) ‑> dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_product_details(product_id: int) -&gt; dict:
+    &#34;&#34;&#34;
+    Получает детальную информацию по одному товару.
+
+    Args:
+        product_id (int): Идентификатор товара.
+
+    Returns:
+        dict: Детальная информация о товаре.
+    &#34;&#34;&#34;
+    url = &#34;https://wildbox.ru/api/wb_dynamic/products/&#34;
+    extra_fields = &#39;,&#39;.join([
+        &#39;orders&#39;, &#39;proceeds&#39;, &#39;in_stock_percent&#39;, &#39;quantity&#39;, &#39;price&#39;, &#39;discount&#39;,
+        &#39;old_price&#39;, &#39;rating&#39;, &#39;reviews&#39;, &#39;feedbacks&#39;, &#39;visibility_dynamic&#39;, 
+        &#39;rating_dynamic&#39;, &#39;expected_position&#39;, &#39;promos&#39;, &#39;sales_speed&#39;, &#39;brand&#39;,
+        &#39;seller&#39;, &#39;images&#39;
+    ])
+    params = {
+        &#39;product_ids&#39;: product_id,
+        &#39;date_from&#39;: DATE_FROM,
+        &#39;date_to&#39;: DATE_TO,
+        &#39;extra_fields&#39;: extra_fields
+    }
+    try:
+        response = requests.get(url, headers=HEADERS, cookies=COOKIES, params=params, timeout=30)
+        response.raise_for_status()
+        results = response.json().get(&#39;results&#39;, [])
+        return results[0] if results else {}
+    except requests.exceptions.RequestException as e:
+        print(f&#34;Ошибка при получении деталей товара {product_id}: {e}&#34;)
+        return {}</code></pre>
+</details>
+<div class="desc"><p>Получает детальную информацию по одному товару.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Детальная информация о товаре.</dd>
+</dl></div>
+</dd>
+<dt id="wildbox_client.get_product_geo_visibility"><code class="name flex">
+<span>def <span class="ident">get_product_geo_visibility</span></span>(<span>product_id: int, geolocation_ids: str) ‑> dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_product_geo_visibility(product_id: int, geolocation_ids: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Получает информацию о гео-видимости товара.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        geolocation_ids (str): Идентификаторы геолокаций.
+
+    Returns:
+        dict: Информация о гео-видимости.
+    &#34;&#34;&#34;
+    url = f&#34;https://wildbox.ru/api/parsers/products/{product_id}/availability/&#34;
+    params = {
+        &#39;product_id&#39;: product_id,
+        &#39;geolocation_ids&#39;: geolocation_ids,
+        &#39;limit&#39;: 10,
+        &#39;offset&#39;: 0
+    }
+    try:
+        response = requests.get(url, headers=HEADERS, cookies=COOKIES, params=params, timeout=30)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f&#34;Ошибка при запросе по гео-видимости товара ID {product_id}: {e}&#34;)
+        return {}</code></pre>
+</details>
+<div class="desc"><p>Получает информацию о гео-видимости товара.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>geolocation_ids</code></strong> :&ensp;<code>str</code></dt>
+<dd>Идентификаторы геолокаций.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Информация о гео-видимости.</dd>
+</dl></div>
+</dd>
+<dt id="wildbox_client.get_warehouse_positions"><code class="name flex">
+<span>def <span class="ident">get_warehouse_positions</span></span>(<span>product_id, search_query)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_warehouse_positions(product_id, search_query):
+    &#34;&#34;&#34;
+    Получает позиции товара по городам по конкретному запросу.
+
+    Args:
+        product_id (int): Идентификатор товара.
+        search_query (str): Запрос для поиска товара.
+
+    Returns:
+        list: Список позиций товара.
+    &#34;&#34;&#34;
+    print(f&#34;[API Client] Запрос позиций по складам для товара ID: {product_id}&#34;)
+    url = &#34;https://wildbox.ru/api/monitoring/positions/&#34;
+
+    encoded_phrase = urllib.parse.quote(search_query, safe=&#39;&#39;)
+
+    params = {&#39;product_id&#39;: product_id, &#39;phrase&#39;: search_query, &#39;pages_max&#39;: 30}
+
+    headers = {
+        &#39;Accept&#39;: &#39;application/json, text/plain, */*&#39;,
+        &#39;Accept-Language&#39;: &#39;ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7&#39;,
+        &#39;Authorization&#39;: AUTH_TOKEN,
+        &#39;CompanyID&#39;: COMPANY_ID,
+        &#39;Connection&#39;: &#39;keep-alive&#39;,
+        &#39;Referer&#39;: f&#39;https://wildbox.ru/dashboard/position/formed?product_id={product_id}&amp;phrase={encoded_phrase}&#39;,
+        &#39;Sec-Fetch-Dest&#39;: &#39;empty&#39;,
+        &#39;Sec-Fetch-Mode&#39;: &#39;cors&#39;,
+        &#39;Sec-Fetch-Site&#39;: &#39;same-origin&#39;,
+        &#39;Time-Zone&#39;: &#39;Europe/Moscow&#39;,
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36&#39;,
+        &#39;UserID&#39;: USER_ID,
+        &#39;sec-ch-ua&#39;: &#39;&#34;Google Chrome&#34;;v=&#34;137&#34;, &#34;Chromium&#34;;v=&#34;137&#34;, &#34;Not/A)Brand&#34;;v=&#34;24&#34;&#39;,
+        &#39;sec-ch-ua-mobile&#39;: &#39;?0&#39;,
+        &#39;sec-ch-ua-platform&#39;: &#39;&#34;macOS&#34;&#39;
+    }
+
+    try:
+        encoded_params = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
+        full_url = f&#34;{url}?{encoded_params}&#34;
+
+        print(f&#34;[API Client] Полный URL: {full_url}&#34;)
+        print(f&#34;[API Client] Заголовки: {headers}&#34;)
+
+        response = requests.get(full_url, headers=headers, cookies=COOKIES, timeout=45)
+
+        print(f&#34;[API Client] Статус ответа: {response.status_code}&#34;)
+        print(f&#34;[API Client] Заголовки ответа: {dict(response.headers)}&#34;)
+        print(f&#34;[API Client] Текст ответа (первые 500 символов): {response.text[:500]}&#34;)
+
+        if response.status_code == 404:
+            print(&#34;  -&gt; Внимание: Эндпоинт позиций вернул ошибку 404 (Not Found).&#34;)
+            return []
+
+        if response.status_code == 403:
+            print(&#34;  -&gt; Ошибка авторизации 403. Проверьте токен и права доступа.&#34;)
+            return []
+
+        response.raise_for_status()
+
+        try:
+            data = response.json()
+        except ValueError as e:
+            print(f&#34;  -&gt; Ошибка парсинга JSON: {e}&#34;)
+            print(f&#34;  -&gt; Полный текст ответа: {response.text}&#34;)
+            return []
+
+        print(f&#34;[API Client] Тип данных: {type(data)}&#34;)
+        print(f&#34;[API Client] Получено записей: {len(data) if isinstance(data, list) else &#39;не список&#39;}&#34;)
+        print(f&#34;[API Client] Данные: {data}&#34;)
+
+        if isinstance(data, dict) and data.get(&#39;detail&#39;):
+            print(f&#34;  -&gt; API вернул деталь: {data[&#39;detail&#39;]}&#34;)
+            return []
+
+        return data
+
+    except requests.exceptions.RequestException as e:
+        print(f&#34;Ошибка при запросе позиций по складам {product_id}: {e}&#34;)
+        return []</code></pre>
+</details>
+<div class="desc"><p>Получает позиции товара по городам по конкретному запросу.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>product_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>Идентификатор товара.</dd>
+<dt><strong><code>search_query</code></strong> :&ensp;<code>str</code></dt>
+<dd>Запрос для поиска товара.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>Список позиций товара.</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="wildbox_client.get_all_warehouses_for_product" href="#wildbox_client.get_all_warehouses_for_product">get_all_warehouses_for_product</a></code></li>
+<li><code><a title="wildbox_client.get_brand_details" href="#wildbox_client.get_brand_details">get_brand_details</a></code></li>
+<li><code><a title="wildbox_client.get_delivery_times" href="#wildbox_client.get_delivery_times">get_delivery_times</a></code></li>
+<li><code><a title="wildbox_client.get_product_details" href="#wildbox_client.get_product_details">get_product_details</a></code></li>
+<li><code><a title="wildbox_client.get_product_geo_visibility" href="#wildbox_client.get_product_geo_visibility">get_product_geo_visibility</a></code></li>
+<li><code><a title="wildbox_client.get_warehouse_positions" href="#wildbox_client.get_warehouse_positions">get_warehouse_positions</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
