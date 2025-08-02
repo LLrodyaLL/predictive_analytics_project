@@ -25,7 +25,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          pip install -r requirements.txt
           pip install flake8 pytest
 
       - name: ✅ Run flake8 on API
