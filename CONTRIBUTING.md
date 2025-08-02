@@ -90,7 +90,6 @@ npm run test
 ```bash
 git checkout -b feature/название-фичи
 # Вносим изменения
-flake8 && pytest  # Проверка
 git add .
 git commit -m "feat: краткое описание"
 git push origin feature/название-фичи
