@@ -1,11 +1,14 @@
 """
-Модуль `server.py` — основной backend-компонент FastAPI-приложения для анализа товаров Wildberries.
+Модуль `server.py` — основной backend-компонент
+FastAPI-приложения для анализа товаров Wildberries.
 
 Этот модуль реализует следующие функции:
 - Обработка входных запросов от пользователей (`submit-request`).
 - Получение данных о товаре по артикулу и поисковому запросу.
 - Генерация признаков и подготовка данных для модели.
-- Получение рекомендаций по улучшению товарной позиции (`get-recommendation`) с использованием модели CatBoost.
+- Получение рекомендаций по
+улучшению товарной позиции (`get-recommendation`)
+с использованием модели CatBoost.
 - Работа с пользовательскими регионами и фильтрами.
 """
 from fastapi import FastAPI, HTTPException
@@ -21,8 +24,19 @@ from API.parsing import extract_product_features
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MATRIX_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "ml_model", "dataset", "logistics_matrix_filtered.xlsx"))
-model_path = os.path.abspath(os.path.join(BASE_DIR, "..", "ml_model", "WB_model.cbm"))
+MATRIX_PATH = os.path.abspath(
+    os.path.join(
+        BASE_DIR,
+        "..",
+        "ml_model",
+        "dataset",
+        "logistics_matrix_filtered.xlsx"))
+model_path = os.path.abspath(
+    os.path.join(
+        BASE_DIR,
+        "..",
+        "ml_model",
+        "WB_model.cbm"))
 
 
 REGION_MAPPING = {
@@ -189,7 +203,12 @@ def get_recommendation():
         temp_path = "temp_reco.csv"
         last_product_df.to_csv(temp_path, index=False, encoding="utf-8-sig")
 
-        model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ml_model", "recomendation.py"))
+        model_path = os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                "..",
+                "ml_model",
+                "recomendation.py"))
 
         process = subprocess.Popen(
             [sys.executable, model_path, temp_path],
@@ -212,7 +231,6 @@ def get_recommendation():
         return {
             "recommendation": output or "Рекомендации найдены, но текст пустой"
         }
-
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
