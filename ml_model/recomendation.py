@@ -11,6 +11,7 @@
 
 Формат входных данных: CSV с одним товаром.
 """
+# финальная версия скрипта
 
 from catboost import CatBoostRegressor, Pool
 import pandas as pd
