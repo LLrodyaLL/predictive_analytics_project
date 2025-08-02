@@ -11,7 +11,7 @@ on:
       - '.github/workflows/backend-check.yml'
 
 jobs:
-  backend-check:
+  ml_model-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
           echo "Running flake8..."
           flake8 ml_model
 
-      - name: ✅ Run backend tests
+      - name: ✅ Run ml_model tests
         run: |
           echo "Running tests..."
           pytest test/test_recomendation.py
