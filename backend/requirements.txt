@@ -8,4 +8,4 @@ joblib
 six
 catboost
 httpx
-
+requests
