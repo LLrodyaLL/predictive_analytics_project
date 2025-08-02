@@ -4,11 +4,11 @@ on:
   push:
     paths:
       - 'ml_model/**'
-      - '.github/workflows/backend-check.yml'
+      - '.github/workflows/ml_model-check.yml'
   pull_request:
     paths:
       - 'ml_model/**'
-      - '.github/workflows/backend-check.yml'
+      - '.github/workflows/ml_model-check.yml'
 
 jobs:
   ml_model-check:
