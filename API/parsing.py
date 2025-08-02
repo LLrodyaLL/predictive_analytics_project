@@ -64,7 +64,12 @@ def get_average_geo_visibility(product_id: int) -> int:
             available = sum(
                 1 for a in availabilities if a.get('is_availability') is True
             )
-            total_visibility += 2 if available == total else 1 if available > 0 else 0
+            if available == total:
+                total_visibility += 2
+            elif available > 0:
+                total_visibility += 1
+            else:
+                total_visibility += 0
             valid_regions += 1
 
         if valid_regions == 0:
@@ -144,7 +149,7 @@ def get_position_features(
         search_query (str): Поисковый запрос для складов.
 
     Returns:
-        dict: Словарь с метриками позиций (средняя, ожидаемая, количество и т.д.).
+        dict: Словарь с метриками позиций
     """
     features = {
         'avg_position': None,
@@ -172,7 +177,10 @@ def get_position_features(
                 valid_positions.append(pos_num)
                 if features['first_valid_position'] is None:
                     features['first_valid_position'] = pos_num
-                if 'expected_position' in pos and pos['expected_position'] is not None:
+                if (
+                    'expected_position' in pos
+                    and pos['expected_position'] is not None
+                ):
                     features['expected_position'] = pos_num
 
         features['positions_count'] = len(valid_positions)
@@ -291,7 +299,8 @@ def extract_product_features(
         if product_data:
             features.update(process_product_data(product_data))
             features.update(process_promos(product_data.get('promos', [])))
-            if 'brand' in product_data and isinstance(product_data['brand'], Dict):
+            if 'brand' in product_data and isinstance(
+                    product_data['brand'], Dict):
                 brand_data = get_brand_details(product_data['brand'].get('id'))
                 if brand_data:
                     features.update({
@@ -424,8 +433,8 @@ if __name__ == "__main__":
         'Участвует в акциях', 'Количество отзывов'
     ]
 
-    df_final = df_final[[col for col in final_columns if col in df_final.columns]]
+    df_final = df_final[[
+        col for col in final_columns if col in df_final.columns]]
 
     df_final.to_csv(OUTPUT_PATH, index=False, encoding='utf-8-sig')
     logging.info("✅ Датасет сохранен в %s", OUTPUT_PATH)
-    
