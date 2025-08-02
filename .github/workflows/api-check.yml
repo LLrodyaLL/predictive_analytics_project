@@ -1,0 +1,35 @@
+name: API CI
+
+on:
+  push:
+    paths:
+      - 'API/**'
+      - '.github/workflows/api-check.yml'
+  pull_request:
+    paths:
+      - 'API/**'
+      - '.github/workflows/api-check.yml'
+
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install flake8 pytest
+
+      - name: ✅ Run flake8 on API
+        run: flake8 API
+
+      - name: 🧪 Run tests for API
+        run: pytest test/test_parsing.py test/test_wildbox_client.py
