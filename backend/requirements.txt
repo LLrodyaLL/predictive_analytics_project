@@ -7,4 +7,5 @@ scikit-learn
 joblib
 six
 catboost
+httpx
 
