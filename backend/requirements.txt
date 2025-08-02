@@ -7,5 +7,4 @@ scikit-learn
 joblib
 six
 catboost
-flake8
-pytest-flake8
+
