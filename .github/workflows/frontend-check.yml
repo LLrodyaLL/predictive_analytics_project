@@ -9,6 +9,7 @@ on:
     paths:
       - 'frontend/**'
       - '.github/workflows/frontend-check.yml'
+  workflow_dispatch:
 
 jobs:
   frontend-check:
