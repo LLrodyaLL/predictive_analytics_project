@@ -17,6 +17,7 @@ import pandas as pd
 import sys
 from pathlib import Path
 
+# === Тест CI/CD ===
 
 # === Настройки ===
 MODEL_PATH = Path(__file__).parent / "WB_model.cbm"
