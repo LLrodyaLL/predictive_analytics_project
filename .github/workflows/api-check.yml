@@ -25,7 +25,7 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          pip install flake8 pytest
+          pip install flake8 pytest pandas numpy openpyxl
 
       - name: ✅ Run flake8 on API
         run: flake8 API
