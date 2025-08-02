@@ -113,17 +113,30 @@ const submitForm = async () => {
     });
 
     formData.value = { article: '', region: '', query: '' };
-    productData.value.push({
+
+    // Сопоставление русских ключей с английскими, как в таблице
+    const fieldMap = {
+      "Выручка": "revenue",
+      "Рейтинг": "rating",
+      "Количество отзывов": "reviews_last_day",
+      "Рейтинг продавца": "brand_rating",
+      "Уровень лояльности": "loyalty_level",
+      "Участвует в акциях": "has_promos",
+      "Дней в акциях": "promo_days"
+    };
+
+    const product = {
       article: response.data.article,
-      region: response.data.region,
-      revenue: response.data.product_data.revenue,
-      rating: response.data.product_data.rating,
-      reviews_last_day: response.data.product_data.reviews_last_day,
-      brand_rating: response.data.product_data.brand_rating,
-      loyalty_level: response.data.product_data.loyalty_level,
-      has_promos: response.data.product_data.has_promos === 1 ? 'Да' : 'Нет',
-      promo_days: response.data.product_data.promo_days
-    });
+      region: response.data.region
+    };
+
+    for (const [ru, en] of Object.entries(fieldMap)) {
+      const value = response.data.product_data[ru];
+      product[en] = ru === "Участвует в акциях" ? (value === 1 ? "Да" : "Нет") : value;
+    }
+
+    productData.value.push(product);
+    successMessage.value = 'Данные успешно получены.';
   } catch (err) {
     error.value = `Ошибка отправки: ${err.response?.data?.detail || err.response?.data?.message || err.message}`;
   } finally {

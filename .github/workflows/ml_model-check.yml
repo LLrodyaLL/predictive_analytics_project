@@ -1,0 +1,39 @@
+name: ML_model CI
+
+on:
+  push:
+    paths:
+      - 'ml_model/**'
+      - '.github/workflows/backend-check.yml'
+  pull_request:
+    paths:
+      - 'ml_model/**'
+      - '.github/workflows/backend-check.yml'
+
+jobs:
+  backend-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest catboost pandas
+
+      - name: 🔍 Lint with flake8
+        run: |
+          echo "Running flake8..."
+          flake8 ml_model
+
+      - name: ✅ Run backend tests
+        run: |
+          echo "Running tests..."
+          pytest test/test_recomendation.py

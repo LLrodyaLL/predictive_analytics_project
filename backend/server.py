@@ -19,8 +19,11 @@ import os
 
 from API.parsing import extract_product_features
 
-MODEL_PATH = "WB_model.cbm"
-MATRIX_PATH = "ml_model/dataset/logistics_matrix_filtered.xlsx"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MATRIX_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "ml_model", "dataset", "logistics_matrix_filtered.xlsx"))
+model_path = os.path.abspath(os.path.join(BASE_DIR, "..", "ml_model", "WB_model.cbm"))
+
 
 REGION_MAPPING = {
     "МОСКВА - ЦФО": "Центральный",
@@ -110,10 +113,10 @@ async def submit_user_request(payload: UserRequest):
 
     try:
         df_matrix = pd.read_excel(MATRIX_PATH)
-    except Exception:
+    except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail="Не удалось загрузить логистическую матрицу"
+            detail=f"Не удалось загрузить логистическую матрицу: {e}"
         )
 
     try:

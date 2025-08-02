@@ -91,13 +91,13 @@ npm run dev
 
 ### Запуск backend-сервера
 
-1. Перейдите в папку /backend
+1. Перейдите в корневую папку проекта /predictive_analytics_project
 ```bash
-cd backend
+cd predictive_analytics_project
 ```
 2. Запустите FastAPI-сервер:
 ```bash
-uvicorn server:app --reload
+uvicorn backend.server:app --reload
 ```
 ---
 
