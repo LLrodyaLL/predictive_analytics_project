@@ -76,6 +76,8 @@
 import { ref, computed } from 'vue';
 import axios from 'axios';
 
+/* финальная версия скрипта */
+
 const regions = ref([
   { value: 'МОСКВА - ЦФО', label: 'МОСКВА - ЦФО' },
   { value: 'САНКТ-ПЕТЕРБУРГ - СЗФО', label: 'САНКТ-ПЕТЕРБУРГ - СЗФО' },
