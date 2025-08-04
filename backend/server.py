@@ -11,6 +11,7 @@ FastAPI-приложения для анализа товаров Wildberries.
 с использованием модели CatBoost.
 - Работа с пользовательскими регионами и фильтрами.
 """
+# финальная версия скрипта
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
