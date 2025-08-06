@@ -3,7 +3,7 @@
 включая получение данных о товарах, брендах, складах
 и позиции товара по регионам.
 """
-
+# Финальная версия скрипта
 import os
 from datetime import datetime, timedelta
 import urllib.parse
